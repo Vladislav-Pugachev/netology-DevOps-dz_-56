@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+  namespace: app-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: hello
+  template:
+    metadata:
+      labels:
+        bb: hello
+    spec:
+      containers:
+      - name: hello-site
+        image: vladpugachev/dz_56:0.1.0
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: regcred
